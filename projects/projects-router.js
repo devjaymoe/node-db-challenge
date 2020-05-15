@@ -59,39 +59,16 @@ router.get('/tasks', (req, res) => {
     });
 });
 
-// create recipe
-// router.post('/', (req, res) => {
-//   db('recipes').insert(req.body)
-//   .then(ids => {
-//     const id = ids[0];
+router.post('/tasks', (req, res) => {
+  const taskData = req.body;
 
-//     db('recipes')
-//       .where({ id })
-//       .first()
-//     .then(recipe => {
-//       res.status(201).json(recipe);
-//     });
-//   })
-//   .catch(error => {
-//     res.status(500).json(error);
-//   });
-// });
-
-// remove recipes
-// router.delete('/:id', (req, res) => {
-//   db('recipes')
-//     .where({ id: req.params.id })
-//     .del()
-//   .then(count => {
-//     if (count > 0) {
-//       res.status(204).end();
-//     } else {
-//       res.status(404).json({ message: 'Record not found' });
-//     }
-//   })
-//   .catch(error => {
-//     res.status(500).json(error);
-//   });
-// });
+  Projects.addTask(taskData)
+    .then(task => {
+      res.status(200).json(task);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
 module.exports = router;

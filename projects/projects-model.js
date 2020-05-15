@@ -37,6 +37,10 @@ function findTasks() {
   return db('tasks')
 }
 
-function addTask() {
+function addTask(data) {
   return db('tasks')
+    .insert(data)
+    .then(ids => {
+      return db('tasks').where('id', ids[0]).first();
+    })
 }
