@@ -13,8 +13,12 @@ function findProjects() {
   return db('projects')
 }
 
-function addProject() {
-  return db('resources')
+function addProject(data) {
+  return db('projects')
+    .insert(data)
+    .then(ids => {
+      return db('projects').where('id', ids[0]).first();
+    })
 }
 
 function findResources() {
@@ -30,5 +34,5 @@ function findTasks() {
 }
 
 function addTask() {
-  return db('resources')
+  return db('tasks')
 }
