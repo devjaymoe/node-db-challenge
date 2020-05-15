@@ -25,8 +25,12 @@ function findResources() {
   return db('resources')
 }
 
-function addResource() {
+function addResource(data) {
   return db('resources')
+    .insert(data)
+    .then(ids => {
+      return db('resources').where('id', ids[0]).first();
+    })
 }
 
 function findTasks() {

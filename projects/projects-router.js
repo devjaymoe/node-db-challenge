@@ -36,6 +36,18 @@ router.get('/resources', (req, res) => {
     });
 });
 
+router.post('/resources', (req, res) => {
+  const resourceData = req.body;
+
+  Projects.addResource(resourceData)
+    .then(resource => {
+      res.status(200).json(resource);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
 router.get('/tasks', (req, res) => {
 
   Projects.findTasks()
