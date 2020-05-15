@@ -2,38 +2,38 @@ const express = require('express');
 const Projects = require('./projects-model.js');
 const router = express.Router();
 
-// router.get('/', (req, res) => {
-//   // get all recipes from the database
-//   Recipes.getRecipes()
-//     .then(recipes => {
-//       res.status(200).json(recipes);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
+router.get('/', (req, res) => {
+  // get all recipes from the database
+  Projects.findProjects()
+    .then(projects => {
+      res.status(200).json(projects);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
-// router.get('/:id/shoppinglist', (req, res) => {
-//   const { id } = req.params
-//   Recipes.getShoppingList(id)
-//     .then(shoppinglist => {
-//       res.status(200).json(shoppinglist);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// })
+router.get('/resources', (req, res) => {
+  // get all recipes from the database
+  Projects.findResources()
+    .then(resources => {
+      res.status(200).json(resources);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
-// router.get('/:id/steps', (req, res) => {
-//   const { id } = req.params
-//   Recipes.getInstructions(id)
-//     .then(steps => {
-//       res.status(200).json(steps);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// })
+router.get('/tasks', (req, res) => {
+  // get all recipes from the database
+  Projects.findTasks()
+    .then(tasks => {
+      res.status(200).json(tasks);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
 // create recipe
 // router.post('/', (req, res) => {
